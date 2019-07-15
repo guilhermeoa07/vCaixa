@@ -10,7 +10,7 @@ require('./src/database/Database')(config.test.ip, config.test.porta, config.tes
 const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     res.status(200).send({
@@ -20,7 +20,9 @@ app.get('/', (req, res) => {
 });
 //Routers
 require('./src/Categoria/routerCategoria')(app);
-require('./src/Users/RouterUsers')(app);
+require('./src/Users/routerUsers')(app);
+require('./src/Pagamento/routerPagamento')(app);
+require('./src/Recebimento/RouterRecebimento')(app);
 
 app.listen(port, () => {
 	console.log('Servidor Online na porta: ' + port);

@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 
-const SchemasCategoria = new mongoose.Schema({
+const SchemasCategorias = new mongoose.Schema({
     description:{
         type: String,
         lowercase: true,
         trim: true,
-        required: true
+        required: true,
+        unique: true
     },
     type: {
         type: Boolean,
@@ -22,6 +23,6 @@ const SchemasCategoria = new mongoose.Schema({
     }
 });
 
-const Categoria = mongoose.model('Categoria', SchemasCategoria);
+const Categorias = mongoose.model('Categorias', SchemasCategorias);
 
-module.exports = Categoria;
+module.exports = Categorias;

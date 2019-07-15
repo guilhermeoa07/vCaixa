@@ -1,8 +1,8 @@
-const Categorias = require('../model/modelCategoria');
+const Recebimento = require('../models/modelRecebimentos');
 
 
 exports.get = async (req, res) => {
-    Categorias.find({})
+    Recebimento.find({})
     .then(value =>{ 
         res.status(200).send(value) 
     })
@@ -13,27 +13,16 @@ exports.get = async (req, res) => {
 
 exports.post = async (req, res) => {
 	try {
-		const categoria = await Categoria.create(req.body);
-		return res.status(200).send({ categoria });
+		const recebimento = await Recebimento.create(req.body);
+		return res.status(200).send({ recebimento });
 	} catch (err) {
 		return res.status(400).send({Erro: err});
 	}
 };
 
-exports.getByName = async (req, res) => {
-    const {description} = req.params;
-    Categorias.find({'description': description})
-    .then(value =>{ 
-        res.status(200).send(value) 
-    })
-    .catch(err =>{
-        res.status(400).send(err) 
-    });
-};
-
 exports.delete = async (req, res) =>{
     const {id} = req.params;
-    Categorias.findByIdAndDelete(id, (err, value)=>{
+    Recebimento.findByIdAndDelete(id, (err, value)=>{
         if(err) return res.status(400).send({Erro: err});
         else{
             return res.status(200).send("Deletado com sucesso.")

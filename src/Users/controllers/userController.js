@@ -1,15 +1,18 @@
-const moongose = require('mongoose');
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
-const generateToken = require ('../../middleware/generationToken');
+const jwt = require('jsonwebtoken');
+const authConfig = require('../../../config/Auth.json');
 
+function generateToken(params = {}) {
+	return jwt.sign(params, authConfig.secret, {
+		expiresIn: 432000
+	});
+}
 exports.post = async (req, res) => {
 	try {
 		const user = await User.create(req.body);
         user.password = undefined;
-        const token = generateToken({ id: user.id });
-        console.log(token)
-		return res.status(200).send({ Id: user.id, Token: token });
+		return res.status(200).send({ Id: user.id, Token: generateToken({ id: user.id }) });
 	} catch (err) {
 		res.status(400).send({ Erro: err });
 	}

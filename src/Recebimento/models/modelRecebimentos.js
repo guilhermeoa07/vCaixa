@@ -1,9 +1,21 @@
 const mongoose = require('mongoose');
-const categoria = require('../Categoria/models/RouterCategoria');
+const Categorias = require('../../Categoria/model/modelCategoria');
 
-function validarCategoria(value){
-    
-}
+
+async function getCategoria () {
+    await Categorias.find({})
+    .then(value =>{ 
+        let dados = new Object;
+        value.forEach(element => {
+            dados.push(element.description);  
+        });
+        console.log(dados)
+        return dados;
+    })
+    .catch(err =>{
+        console.log(err)
+    });
+};
 
 const SchemasRecebimento = new mongoose.Schema({
     description:{
@@ -28,7 +40,7 @@ const SchemasRecebimento = new mongoose.Schema({
     },
     categoria:{
         type: String,
-        validate: [validarCategoria, 'Categoria não cadastrada.']
+        validate: [getCategoria, 'Categoria não cadastrada.']
     }
 });
 
