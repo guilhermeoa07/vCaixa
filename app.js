@@ -5,7 +5,7 @@ const config = require('./config/config')('./config/DatabaseConfig.ini');
 const port = normalizePort(process.env.port || '80');
 
 //database local
-require('./src/database/Database')(config.test.ip, config.test.porta, config.test.db);
+require('./database/Database')(config.test.ip, config.test.porta, config.test.db);
 
 const app = express();
 
@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
         Message: "Vcaixa"
     });
 });
+
 //Routers
 require('./src/Categoria/routerCategoria')(app);
 require('./src/Users/routerUsers')(app);
@@ -27,3 +28,5 @@ require('./src/Recebimento/RouterRecebimento')(app);
 app.listen(port, () => {
 	console.log('Servidor Online na porta: ' + port);
 });
+
+module.exports = app;

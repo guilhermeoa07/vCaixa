@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const auth = require('../middleware/auth');
+const auth = require('../../middleware/auth');
 const Controller = require('./controllers/pagamentoController');
 
 router.use(auth);
