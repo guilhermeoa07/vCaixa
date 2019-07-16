@@ -1,21 +1,5 @@
 const mongoose = require('mongoose');
-const Categorias = require('../../Categoria/model/modelCategoria');
-
-
-async function getCategoria () {
-    await Categorias.find({})
-    .then(value =>{ 
-        let dados = new Object;
-        value.forEach(element => {
-            dados.push(element.description);  
-        });
-        console.log(dados)
-        return dados;
-    })
-    .catch(err =>{
-        console.log(err)
-    });
-};
+const Float = require('mongoose-float').loadType(mongoose);
 
 const SchemasRecebimento = new mongoose.Schema({
     description:{
@@ -25,7 +9,7 @@ const SchemasRecebimento = new mongoose.Schema({
         trim: true
     },
     valor:{
-        type: Number,
+        type: Float,
         required: true,
         min: 0
     },
@@ -40,7 +24,7 @@ const SchemasRecebimento = new mongoose.Schema({
     },
     categoria:{
         type: String,
-        validate: [getCategoria, 'Categoria não cadastrada.']
+        default: null
     }
 });
 

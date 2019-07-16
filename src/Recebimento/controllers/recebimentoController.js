@@ -1,4 +1,5 @@
 const Recebimento = require('../models/modelRecebimentos');
+const Categoria = require('../../Categoria/model/modelCategoria');
 
 
 exports.get = async (req, res) => {
@@ -11,10 +12,16 @@ exports.get = async (req, res) => {
     });
 };
 
+
 exports.post = async (req, res) => {
-	try {
-		const recebimento = await Recebimento.create(req.body);
-		return res.status(200).send({ recebimento });
+    const categoria = await Categoria.find({description: req.body.categoria, type: true});
+    try {
+        if(categoria == '') {
+            return res.status(200).send({Error: "Categoria não cadastrada."});
+        }else{
+            const recebimento = await Recebimento.create(req.body);
+            return res.status(200).send({ recebimento });
+        }   
 	} catch (err) {
 		return res.status(400).send({Erro: err});
 	}
@@ -29,3 +36,4 @@ exports.delete = async (req, res) =>{
         }
     })
 }
+

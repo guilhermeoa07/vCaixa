@@ -13,7 +13,7 @@ exports.get = async (req, res) => {
 
 exports.post = async (req, res) => {
 	try {
-		const categoria = await Categoria.create(req.body);
+        const categoria = await Categorias.create(req.body);
 		return res.status(200).send({ categoria });
 	} catch (err) {
 		return res.status(400).send({Erro: err});

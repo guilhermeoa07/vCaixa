@@ -12,7 +12,7 @@ exports.post = async (req, res) => {
 	try {
 		const user = await User.create(req.body);
         user.password = undefined;
-		return res.status(200).send({ Id: user.id, Token: generateToken({ id: user.id }) });
+		return res.status(201).send({ Id: user.id, Token: generateToken({ id: user.id }) });
 	} catch (err) {
 		res.status(400).send({ Erro: err });
 	}
