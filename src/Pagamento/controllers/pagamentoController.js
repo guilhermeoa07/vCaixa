@@ -19,7 +19,7 @@ exports.post = async (req, res) => {
             return res.status(200).send({Error: "Categoria não cadastrada."});
         }else{
             const pagamento = await Pagamento.create(req.body);
-            return res.status(200).send({ pagamento });
+            return res.status(201).send({Pagamento: { pagamento }});
         }   
 	} catch (err) {
 		return res.status(400).send({Erro: err});
