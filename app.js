@@ -24,6 +24,7 @@ require('./src/Categoria/routerCategoria')(app);
 require('./src/Users/routerUsers')(app);
 require('./src/Pagamento/routerPagamento')(app);
 require('./src/Recebimento/RouterRecebimento')(app);
+require('./src/Caixa/routerCaixa')(app);
 
 app.listen(port, () => {
 	console.log('Servidor Online na porta: ' + port);

@@ -1,6 +1,6 @@
 const Pagamento = require('../models/modelPagamentos');
 const Categoria = require('../../Categoria/model/modelCategoria');
-
+const moment = require('moment');
 
 exports.get = async (req, res) => {
     Pagamento.find({})
@@ -11,6 +11,18 @@ exports.get = async (req, res) => {
         res.status(400).send(err) 
     });
 };
+
+exports.getbyDate = async(req, res)=>{
+    let date = req.params.date;
+    date = date.substring(0,2)+'/'+date.substring(2,4)+'/'+date.substring(4,8);
+    const data = moment(date, 'DD/MM/YYYY', "pt", true).format('DD/MM/YYYY');
+    console.log(data)
+    Pagamento.find( {date: data } )
+    .then((err, pagamento)=>{
+        if(err) res.status(400).send(err);
+        res.send(pagamento)
+    })
+}
 
 exports.post = async (req, res) => {
     const categoria = await Categoria.find({description: req.body.categoria, type: false});

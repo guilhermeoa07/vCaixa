@@ -6,7 +6,7 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-module.exports = describe('Usuario', () =>{
+describe('Usuario', () =>{
     before((next) =>{
         User.remove({}, (err)=>{ 
             next();
@@ -35,7 +35,11 @@ module.exports = describe('Usuario', () =>{
         .send(Default)
         .end((err, res) => {
             res.should.status(200);
+            res.body.should.have.property('User');
+            res.body.User.should.have.property('Token');
+            global.token = res.body.User.Token; 
             done();
         });     
     });
 });
+

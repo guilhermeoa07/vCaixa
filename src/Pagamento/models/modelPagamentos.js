@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Float = require('mongoose-float').loadType(mongoose);
+const moment = require('moment');
 
 const SchemasPagamentos = new mongoose.Schema({
     description:{
@@ -14,13 +15,13 @@ const SchemasPagamentos = new mongoose.Schema({
         min: 0
     },
     date:{
-        type: Date,
-        default: Date.now
+        type: String,
+        default: moment().format('DD/MM/YYYY'),
+        required: true
     },
     update: {
         type: Date,
-        default: Date.now,
-        required: true
+        default: Date.now
     },
     categoria:{
         type: String,

@@ -28,6 +28,6 @@ exports.postAuthenticate = async (req, res) => {
 
 	user.password = undefined;
 
-	res.status(200).send({ Usuario: user.name, token: generateToken({ id: user.id }) });
+	res.status(200).send({User: { Usuario: user.name, Token: generateToken({ id: user.id }) }});
 }
 

@@ -5,6 +5,7 @@ const Controller = require('./controllers/recebimentoController');
 router.use(auth);
 
 router.get('/', Controller.get);
+router.get('/date/:date', Controller.getbyDate);
 router.post('/', Controller.post);
 router.delete('/:id', Controller.delete);
 
