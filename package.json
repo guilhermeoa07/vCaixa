@@ -4,11 +4,11 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "mocha __tests__ --timeout 5000",
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "mocha __tests__ --timeout 5000"
   },
   "keywords": [],
-  "author": "",
+  "author": "Guilherme Oliveira <guilherme.ol.an@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -27,5 +27,6 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^6.1.4"
-  }
+  },
+  "repository": "https://github.com/guilhermeoa07/vCaixa.git"
 }

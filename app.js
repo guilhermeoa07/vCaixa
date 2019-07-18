@@ -2,10 +2,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const normalizePort = require('normalize-port');
 const config = require('./config/config')('./config/DatabaseConfig.ini');
-const port = normalizePort(process.env.port || '80');
+const port = normalizePort(process.env.port || config.config.porta);
 
 //database local
-require('./database/Database')(config.test.ip, config.test.porta, config.test.db);
+require('./database/Database')(config.DBTest.ip, config.DBTest.porta, config.DBTest.db);
 
 const app = express();
 
